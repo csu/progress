@@ -1,9 +1,14 @@
 from datetime import datetime
 
-from flask import Flask, redirect, request
+from flask import Flask, redirect, request, send_from_directory
 import pandoc
 
 import progress
+
+# TODO: switch to templating and make it look pretty
+# TODO: use a better text editor with markdown features
+# TODO: add a calendar or something to all pages for faster navigation
+# TODO: add a whole-year view (probably to the progress library)
 
 app = Flask(__name__)
 p = progress.Progress("data/", file_ext="md")
@@ -27,7 +32,7 @@ def get_week_as_html(date=None):
 
 @app.route('/')
 def current_week():
-    return get_week_as_html()
+  return get_week_as_html()
 
 # /YYYY-MM-DD
 @app.route('/<datestring>')
@@ -43,7 +48,6 @@ def edit_specific_week(datestring):
     if request.method == 'POST':
       if request.form['content']:
         p.set_week(request.form['content'], date_=date)
-
       return redirect("/%s" % datestring)
 
     content = p.get_week(date_=date)
@@ -55,6 +59,12 @@ def edit_specific_week(datestring):
       <input type="submit">
     </form>
     ''' % content
+
+# so it doesn't complain
+@app.route('/favicon.ico')
+def favicon():
+  return send_from_directory(app.root_path, 'favicon.ico',
+      mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
   app.run(debug=True)
