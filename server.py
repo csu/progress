@@ -10,6 +10,7 @@ import config
 # TODO: switch to templating and make it look pretty
 # TODO: use a better text editor with markdown features
 # TODO: add a calendar or something to all pages for faster navigation
+# TODO: add template file support so that default content is used for new weeks
 # TODO: add a whole-year view (probably to the progress library)
 
 app = Flask(__name__)
