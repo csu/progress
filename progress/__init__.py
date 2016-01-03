@@ -1,1 +1,1 @@
-from progress import Progress
+from progress import *

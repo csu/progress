@@ -1,3 +1,4 @@
+static/bootstrap*
 data/
 config.py
 *secrets.py
