@@ -1,6 +1,5 @@
 static/bootstrap*
 data/
-config.py
 *secrets.py
 
 # Byte-compiled / optimized / DLL files

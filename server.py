@@ -5,13 +5,15 @@ import pandoc
 
 import progress
 
+import config
+
 # TODO: switch to templating and make it look pretty
 # TODO: use a better text editor with markdown features
 # TODO: add a calendar or something to all pages for faster navigation
 # TODO: add a whole-year view (probably to the progress library)
 
 app = Flask(__name__)
-p = progress.Progress("data/", file_ext="md")
+p = progress.Progress(config.data_store_path, config.file_ext)
 
 pandoc.core.PANDOC_PATH = '/usr/local/bin/pandoc'
 
