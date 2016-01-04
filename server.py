@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import Flask, redirect, request, send_from_directory
+from flask import Flask, redirect, request, send_from_directory, render_template
 import pandoc
 
 import progress
@@ -36,13 +36,15 @@ def get_week_as_html(date=None):
 
 @app.route('/')
 def current_week():
-  return get_week_as_html()
+  content = get_week_as_html()
+  return render_template('default.html', content=content)
 
 # /YYYY-MM-DD
 @app.route('/<datestring>')
 def specific_week(datestring):
     date = datetime.strptime(datestring, "%Y-%m-%d")
-    return get_week_as_html(date=date)
+    content = get_week_as_html(date=date)
+    return render_template('default.html', content=content)
 
 # /YYYY-MM-DD/edit
 @app.route('/<datestring>/edit', methods=['POST', 'GET'])
@@ -55,14 +57,15 @@ def edit_specific_week(datestring):
       return redirect("/%s" % datestring)
 
     content = p.get_week(date_=date, template=config.template)
-
-    return '''
+    content = '''
     <form action="" method="post" style="margin: 40px;">
       <textarea name="content" style="margin: 0px; width: 600px; height: 500px; font-size: 14pt;">%s</textarea>
       <br><br>
       <input type="submit">
     </form>
     ''' % content
+
+    return render_template('default.html', content=content)
 
 # so it doesn't complain
 @app.route('/favicon.ico')
