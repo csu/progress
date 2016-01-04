@@ -47,13 +47,19 @@ class Progress:
     return self.fpath(filename)
 
   # week defaults to current week if not specified
-  def get_week(self, date_=None):
+  def get_week(self, date_=None, template=None):
     filepath = self.week_file_path(date_=date_)
 
     if os.path.isfile(filepath):
       with open(filepath, 'r') as f:
         data = f.read()
       return data
+
+    if template:
+      if os.path.isfile(template):
+        with open(template, 'r') as f:
+          data = f.read()
+        return data
 
     return None
 
