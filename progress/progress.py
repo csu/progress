@@ -70,8 +70,9 @@ class Progress:
       return filter_content(data, date_=date_)
 
     if template:
-      if os.path.isfile(template):
-        with open(template, 'r') as f:
+      template_path = self.fpath(template)
+      if os.path.isfile(template_path):
+        with open(template_path, 'r') as f:
           data = f.read()
         return filter_content(data, date_=date_)
 
