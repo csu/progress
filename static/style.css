@@ -2,10 +2,22 @@ body {
   padding-top: 50px;
 }
 
-.main {
+.entry-content {
   padding-top: 5px;
   padding-left: 15px;
   padding-bottom: 20px;
+}
+
+.entry-content h2 {
+  color: #333333;
+}
+
+.entry-content h3 {
+  color: #737373;
+}
+
+.entry-content p {
+  font-size: 14pt;
 }
 
 .edit-form {
@@ -16,5 +28,9 @@ body {
   margin: 0px;
   width: 90%;
   height: 750px;
+  font-size: 14pt;
+}
+
+.archive-list {
   font-size: 14pt;
 }
