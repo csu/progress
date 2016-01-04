@@ -13,6 +13,14 @@ def get_week_string(date_=None, start_on_sunday=False):
     return week_start.strftime("wk%U_%Y-%m-%d")
   return week_start.strftime("wk%W_%Y-%m-%d")
 
+def get_week_title(date_=None, start_on_sunday=False):
+  week_start = get_start_of_week(date_=date_,
+      start_on_sunday=start_on_sunday)
+
+  if start_on_sunday:
+    return week_start.strftime("Week %U: %Y-%m-%d")
+  return week_start.strftime("Week %W: %Y-%m-%d")
+
 def get_start_of_week(date_=None, start_on_sunday=False):
   if not date_:
     date_ = datetime.now()
@@ -26,6 +34,12 @@ def get_start_of_week(date_=None, start_on_sunday=False):
 
   # convert back into a date and return
   return datetime.strptime(date_string, "%Y %W %w")
+
+def filter_content(content, date_=None):
+  # replace $$title$$ with the title
+  content = content.replace("$$title$$", get_week_title(date_=date_))
+
+  return content
 
 class Progress:
   # data_store_path should be either a file system path
@@ -53,17 +67,17 @@ class Progress:
     if os.path.isfile(filepath):
       with open(filepath, 'r') as f:
         data = f.read()
-      return data
+      return filter_content(data, date_=date_)
 
     if template:
       if os.path.isfile(template):
         with open(template, 'r') as f:
           data = f.read()
-        return data
+        return filter_content(data, date_=date_)
 
     return None
 
   def set_week(self, content, date_=None):
     filepath = self.week_file_path(date_=date_)
     with open(filepath, 'w') as f:
-      f.write(content)
+      f.write(filter_content(content, date_=date_))
