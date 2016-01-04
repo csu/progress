@@ -1,3 +1,3 @@
 data_store_path = "data/"
 file_ext = "md"
-template = "data/_template.md"
+template = "_template.md"
