@@ -53,7 +53,7 @@ def edit_specific_week(datestring):
         p.set_week(request.form['content'], date_=date)
       return redirect("/%s" % datestring)
 
-    content = p.get_week(date_=date)
+    content = p.get_week(date_=date, template=config.template)
 
     return '''
     <form action="" method="post" style="margin: 40px;">
