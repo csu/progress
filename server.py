@@ -7,10 +7,8 @@ import progress
 
 import config
 
-# TODO: switch to templating and make it look pretty
 # TODO: use a better text editor with markdown features
-# TODO: add a calendar or something to all pages for faster navigation
-# TODO: add template file support so that default content is used for new weeks
+# TODO: dynamically generate archive
 # TODO: add a whole-year view (probably to the progress library)
 # TODO: auto-save progress in editor regularly
 
@@ -69,7 +67,7 @@ def edit_specific_week(datestring):
     </form>
     ''' % content
 
-    return render_template('default.html', content=content, edit_link='#')
+    return render_template('default.html', content=content)
 
 # so it doesn't complain
 @app.route('/favicon.ico')
@@ -79,3 +77,4 @@ def favicon():
 
 if __name__ == '__main__':
   app.run(debug=True)
+  
