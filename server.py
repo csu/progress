@@ -30,21 +30,25 @@ def get_week_as_html(date=None):
   content = str(doc.html)
 
   week_string = get_week_string(date=date)
-  content += '\n\n <a href="%s/edit">Edit</a>' % week_string
+  edit_link = "/%s/edit" % week_string
 
-  return content
+  return content, edit_link
 
 @app.route('/')
 def current_week():
-  content = get_week_as_html()
-  return render_template('default.html', content=content)
+  content, edit_link = get_week_as_html()
+  return render_template('default.html', content=content, edit_link=edit_link)
+
+@app.route('/archive')
+def archive():
+  return render_template('archive.html')
 
 # /YYYY-MM-DD
 @app.route('/<datestring>')
 def specific_week(datestring):
     date = datetime.strptime(datestring, "%Y-%m-%d")
-    content = get_week_as_html(date=date)
-    return render_template('default.html', content=content)
+    content, edit_link = get_week_as_html(date=date)
+    return render_template('default.html', content=content, edit_link=edit_link)
 
 # /YYYY-MM-DD/edit
 @app.route('/<datestring>/edit', methods=['POST', 'GET'])
@@ -58,14 +62,14 @@ def edit_specific_week(datestring):
 
     content = p.get_week(date_=date, template=config.template)
     content = '''
-    <form action="" method="post" style="margin: 40px;">
-      <textarea name="content" style="margin: 0px; width: 600px; height: 500px; font-size: 14pt;">%s</textarea>
+    <form action="" method="post" class="edit-form">
+      <textarea name="content" class="edit-textarea">%s</textarea>
       <br><br>
       <input type="submit">
     </form>
     ''' % content
 
-    return render_template('default.html', content=content)
+    return render_template('default.html', content=content, edit_link='#')
 
 # so it doesn't complain
 @app.route('/favicon.ico')
