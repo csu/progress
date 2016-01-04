@@ -56,8 +56,8 @@ def edit_specific_week(datestring):
     content = p.get_week(date_=date)
 
     return '''
-    <form action="" method="post">
-      <textarea name="content" style="margin: 0px; width: 600px; height: 500px;">%s</textarea>
+    <form action="" method="post" style="margin: 40px;">
+      <textarea name="content" style="margin: 0px; width: 600px; height: 500px; font-size: 14pt;">%s</textarea>
       <br><br>
       <input type="submit">
     </form>
