@@ -12,6 +12,7 @@ import config
 # TODO: add a calendar or something to all pages for faster navigation
 # TODO: add template file support so that default content is used for new weeks
 # TODO: add a whole-year view (probably to the progress library)
+# TODO: auto-save progress in editor regularly
 
 app = Flask(__name__)
 p = progress.Progress(config.data_store_path, config.file_ext)
