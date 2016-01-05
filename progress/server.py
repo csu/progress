@@ -45,10 +45,9 @@ def main():
   # you might not want this
   @app.route('/goals')
   def goals_page():
-    content = p.get_file('_goals.md')
     doc = pandoc.Document()
-    doc.markdown = content
-    content = str(doc.html)    
+    doc.markdown = p.get_file('_goals.md')
+    content = unicode(str(doc.html), "utf-8")
     return render_template('default.html', content=content)
 
   @app.route('/archive')
