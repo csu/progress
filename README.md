@@ -20,3 +20,19 @@ Open `localhost:5000` in a browser.
 * Click on `Edit` in the nav bar on any snippet page to open the editor for it.
 * Click on `Archive` in the nav bar to view a list of weeks in the year and get to past snippets.
 * Click on `Goals` in the nav bar to view your goals (Only works if you created a `_goals.md` file. Currently hard-coded in.)
+
+### Options
+```
+$ progress -h
+usage: progress [-h] [-t TEMPLATE] [-e FILEEXT] data_store_path
+
+positional arguments:
+  data_store_path
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TEMPLATE, --template TEMPLATE
+                        template file name
+  -e FILEEXT, --fileext FILEEXT
+                        file extension
+```
