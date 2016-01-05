@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
   name='makeprogress',
-  version='0.0.1',
+  version='0.0.2',
   description='Use progress to manage weekly snippets.',
   long_description=open('README').read(),
   author='Christopher Su',

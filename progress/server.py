@@ -42,6 +42,15 @@ def main():
     content, edit_link = get_week_as_html()
     return render_template('default.html', content=content, edit_link=edit_link)
 
+  # you might not want this
+  @app.route('/goals')
+  def current_week():
+    content = p.get_file('_goals.md')
+    doc = pandoc.Document()
+    doc.markdown = content
+    content = str(doc.html)    
+    return render_template('default.html', content=content)
+
   @app.route('/archive')
   def archive():
     return render_template('archive.html')
