@@ -1,10 +1,11 @@
 # progress
 An app for maintaining weekly snippets of progress.
 
-#### Weekly Snippet View
+## Screenshots
+### Weekly Snippet
 ![](https://raw.githubusercontent.com/csu/progress/master/screenshots/main.jpg)
 
-#### Editor
+### Editor
 ![](https://raw.githubusercontent.com/csu/progress/master/screenshots/editor.jpg)
 
 ## Installation
