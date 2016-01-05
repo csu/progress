@@ -1,5 +1,5 @@
 # progress
-An app for maintaining weekly snippets of progress.
+An app for maintaining weekly snippets of progress on goals or tasks.
 
 ## Screenshots
 ### Weekly Snippet
