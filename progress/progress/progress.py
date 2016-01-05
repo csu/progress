@@ -82,3 +82,13 @@ class Progress:
     filepath = self.week_file_path(date_=date_)
     with open(filepath, 'w') as f:
       f.write(filter_content(content, date_=date_))
+
+  # helper to get content of files relative to the
+  # data store path
+  def get_file(self, filename):
+    filepath = self.fpath(filename)
+    if os.path.isfile(filepath):
+      with open(filepath, 'r') as f:
+        data = f.read()
+      return data
+    return None
