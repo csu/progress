@@ -1,6 +1,7 @@
 # progress
 An app for maintaining weekly snippets of progress.
 
+#### Weekly Snippet View
 ![](https://raw.githubusercontent.com/csu/progress/master/screenshots/main.jpg)
 
 #### Editor
