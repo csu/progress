@@ -44,7 +44,7 @@ def main():
 
   # you might not want this
   @app.route('/goals')
-  def current_week():
+  def goals_page():
     content = p.get_file('_goals.md')
     doc = pandoc.Document()
     doc.markdown = content
@@ -52,7 +52,7 @@ def main():
     return render_template('default.html', content=content)
 
   @app.route('/archive')
-  def archive():
+  def archive_page():
     return render_template('archive.html')
 
   # /YYYY-MM-DD
