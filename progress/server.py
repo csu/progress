@@ -22,6 +22,10 @@ def main():
   app = Flask(__name__)
   p = progress.Progress(args.data_store_path, args.fileext)
 
+  def get_edit_link(date=None):
+    week_string = get_week_string(date=date)
+    return "/%s/edit" % week_string
+
   def get_week_string(date=None):
     week_start = progress.get_start_of_week(date_=date)
     return week_start.strftime("%Y-%m-%d")
@@ -40,10 +44,7 @@ def main():
     else:
       content = ""
 
-    week_string = get_week_string(date=date)
-    edit_link = "/%s/edit" % week_string
-
-    return content, edit_link
+    return content, get_edit_link(date)
 
   @app.route('/')
   def current_week():
@@ -55,16 +56,12 @@ def main():
   def goals_page():
     doc = pandoc.Document()
     doc.markdown = p.get_file('_goals.md')
-    week_string = get_week_string()
-    edit_link = "/%s/edit" % week_string
     content = unicode(str(doc.html), "utf-8")
-    return render_template('default.html', content=content, edit_link=edit_link)
+    return render_template('default.html', content=content, edit_link=get_edit_link())
 
   @app.route('/archive')
   def archive_page():
-    week_string = get_week_string()
-    edit_link = "/%s/edit" % week_string
-    return render_template('archive.html', edit_link=edit_link)
+    return render_template('archive.html', edit_link=get_edit_link())
 
   # /YYYY-MM-DD
   @app.route('/<datestring>')
