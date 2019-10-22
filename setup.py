@@ -15,7 +15,7 @@ setup(
     'progress': ['static/*', 'templates/*']
   },
   install_requires=[
-    'Flask==0.10.1',
+    'Flask==1.0',
     'itsdangerous==0.24',
     'Jinja2==2.8',
     'MarkupSafe==0.23',
