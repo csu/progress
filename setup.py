@@ -21,7 +21,7 @@ setup(
     'MarkupSafe==0.23',
     'pyandoc==0.0.1',
     'sh==1.11',
-    'Werkzeug==0.11.3',
+    'Werkzeug==0.15.3',
     'wheel==0.24.0',
   ],
   entry_points={
